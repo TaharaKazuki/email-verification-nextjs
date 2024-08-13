@@ -4,7 +4,7 @@ import SubscribeFormButton from './SubscribeFormButton';
 
 const SubscribeForm = () => {
   return (
-    <form id="subscribe-form" className="w-full">
+    <form id="subscribe-form">
       <label htmlFor="email" className="hidden">
         Email
       </label>
