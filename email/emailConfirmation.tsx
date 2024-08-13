@@ -16,7 +16,7 @@ type EmailTemplateProps = {
   link: string;
 };
 
-const ConfirmationEmail = ({ email, link }: EmailTemplateProps) => {
+const ConfirmationEmail = ({ link }: EmailTemplateProps) => {
   return (
     <Tailwind>
       <Html lang="ja">
@@ -24,7 +24,7 @@ const ConfirmationEmail = ({ email, link }: EmailTemplateProps) => {
         <Preview>Confirm your email address</Preview>
         <Body className="mx-auto bg-white p-4 font-sans">
           <Container>
-            <Heading className="text-2xl">You`&apos;re Almost There</Heading>
+            <Heading className="text-2xl">You&apos;re Almost There</Heading>
             <Text className="-mt-2">
               Confirm your email address to start receiving amazing emails about
               amazing things!
@@ -36,7 +36,7 @@ const ConfirmationEmail = ({ email, link }: EmailTemplateProps) => {
             </Text>
 
             <Button
-              className=" rounded-md bg-gray-100 px-4 py-2 text-center"
+              className=" rounded-md bg-gray-100 px-4 py-2 text-center text-black"
               href={link}
             >
               Click Me
