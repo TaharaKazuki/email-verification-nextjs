@@ -26,7 +26,15 @@ export const subscribe = async (
   const validatedEmail = parsed.data.email.toLowerCase();
 
   const token = uuidv4();
-  const newSubscriber = await createSubscriber(validatedEmail, token);
 
-  return { data: newSubscriber };
+  try {
+    const newSubscriber = await createSubscriber(validatedEmail, token);
+    return { data: newSubscriber };
+  } catch (error: any) {
+    console.error(error);
+    if (error?.code === 'P2002') {
+      return { error: 'Email already exists' };
+    }
+    return { error: 'Failed to subscribe' };
+  }
 };

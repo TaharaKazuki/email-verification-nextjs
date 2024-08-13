@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Subscriber {
-  email                        String   @db.VarChar(255)
+  email                        String   @db.VarChar(255) @unique
   verified                     Boolean  @default(false)
   token                        String   @db.VarChar(255)
   xata_version                 Int      @default(0)

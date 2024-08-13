@@ -1,11 +1,22 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import SubscribeFormButton from './SubscribeFormButton';
 import { subscribe } from '@/actions/subscribe';
 
 const SubscribeForm = () => {
+  const router = useRouter();
+
   const handleSubmit = async (formData: FormData) => {
     const { error, data } = await subscribe(formData);
+
+    if (error) {
+      console.error(error);
+    } else {
+      console.info(data);
+      router.push('/subscriber/pending');
+    }
   };
   return (
     <form action={handleSubmit} id="subscribe-form">
