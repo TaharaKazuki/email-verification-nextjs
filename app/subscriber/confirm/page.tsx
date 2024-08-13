@@ -13,20 +13,14 @@ type ConfirmSubscriberPageProps = {
 const ConfirmSubscriberPage = async ({
   searchParams,
 }: ConfirmSubscriberPageProps) => {
-  const tokenFromUrl = searchParams.token;
-
   // クッキーからトークンを取得
   const tokenFromCookie = cookies().get('subscriber_token')?.value;
 
-  if (!tokenFromUrl) {
+  if (!tokenFromCookie) {
     throw new Error('No token was passed');
   }
 
-  if (tokenFromUrl !== tokenFromCookie) {
-    throw new Error('Token mismatch');
-  }
-
-  const subscriber = await getOneSubscriberByToken(tokenFromUrl);
+  const subscriber = await getOneSubscriberByToken(tokenFromCookie);
   if (!subscriber) {
     throw new Error('Could not find subscriber');
   }
