@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 import SubscribeFormButton from './SubscribeFormButton';
 import { subscribe } from '@/actions/subscribe';
@@ -9,12 +10,13 @@ const SubscribeForm = () => {
   const router = useRouter();
 
   const handleSubmit = async (formData: FormData) => {
-    const { error, data } = await subscribe(formData);
+    const { error } = await subscribe(formData);
 
     if (error) {
       console.error(error);
+      return toast.error(error);
     } else {
-      console.info(data);
+      toast.success('Check your email to confirm.');
       router.push('/subscriber/pending');
     }
   };

@@ -31,7 +31,7 @@ export const subscribe = async (
     const newSubscriber = await createSubscriber(checkedEmail, token);
     console.info(newSubscriber);
 
-    const validateEmailLink = `${process.env.NEXT_PUBLIC_URL}/subscriber/confirm?token=${token}`;
+    const validateEmailLink = `${process.env.NEXT_PUBLIC_BASE_URL}/subscriber/confirm?token=${token}`;
 
     const { error } = await sendConfirmationEmail(
       checkedEmail,

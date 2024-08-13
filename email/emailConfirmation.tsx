@@ -1,5 +1,6 @@
 import {
   Body,
+  Button,
   Container,
   Head,
   Heading,
@@ -34,9 +35,12 @@ const ConfirmationEmail = ({ email, link }: EmailTemplateProps) => {
               URL 👇
             </Text>
 
-            <Text className=" rounded-md bg-gray-100 px-4 py-2 text-center">
-              {link}
-            </Text>
+            <Button
+              className=" rounded-md bg-gray-100 px-4 py-2 text-center"
+              href={link}
+            >
+              Click Me
+            </Button>
 
             <Text className="mt-10 text-xs">
               *If you did not request this email, there is nothing to worry
