@@ -23,6 +23,7 @@ export const subscribe = async (
     if (!parsed.success) return { error: parsed.error.message };
 
     const checkedEmail = parsed.data.email.toLowerCase();
+
     const existingSubscriber = await getOneSubscriberByEmail(checkedEmail);
     if (existingSubscriber) {
       return { error: 'Subscriber already exists.' };
@@ -30,25 +31,15 @@ export const subscribe = async (
     const token = uuidv4();
 
     const newSubscriber = await createSubscriber(checkedEmail, token);
-    console.info(newSubscriber);
+    console.log(newSubscriber);
 
-    cookies().set({
-      name: 'subscriber_token',
-      value: token,
-      path: '/',
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 60 * 60 * 24,
-    });
-
-    const validateEmailLink = `${process.env.NEXT_PUBLIC_BASE_URL}/subscriber/confirm`;
-
+    const validateEmailLink = `${process.env.NEXT_PUBLIC_URL}/subscriber/confirm?token=${token}`;
     const { error } = await sendConfirmationEmail(
       checkedEmail,
       validateEmailLink
     );
     if (error) return { error: 'Failed to send confirmation email' };
+
     return {};
   } catch (error) {
     console.error(error);
