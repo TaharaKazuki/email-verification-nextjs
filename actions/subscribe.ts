@@ -1,7 +1,6 @@
 'use server';
 import { v4 as uuidv4 } from 'uuid';
 import * as z from 'zod';
-import { cookies } from 'next/headers'; // next/headers から cookies をインポート
 
 import { createSubscriber, getOneSubscriberByEmail } from '@/lib/queries';
 import { sendConfirmationEmail } from '@/utils/email';
