@@ -30,8 +30,7 @@ export const subscribe = async (
     }
     const token = uuidv4();
 
-    const newSubscriber = await createSubscriber(checkedEmail, token);
-    console.log(newSubscriber);
+    await createSubscriber(checkedEmail, token);
 
     const validateEmailLink = `${process.env.NEXT_PUBLIC_URL}/subscriber/confirm?token=${token}`;
     const { error } = await sendConfirmationEmail(
