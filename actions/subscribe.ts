@@ -1,5 +1,8 @@
 'use server';
+import { v4 as uuidv4 } from 'uuid';
 import * as z from 'zod';
+
+import { createSubscriber } from '@/lib/queries';
 
 const subscribeSchema = z.object({
   email: z.string().email(),
@@ -12,7 +15,7 @@ type ReturnValue<T> = {
 
 export const subscribe = async (
   formData: FormData
-): Promise<ReturnValue<string>> => {
+): Promise<ReturnValue<any>> => {
   const email = formData.get('email');
   const parsed = subscribeSchema.safeParse({ email });
 
@@ -20,5 +23,10 @@ export const subscribe = async (
     return { error: 'Invalid email' };
   }
 
-  return {};
+  const validatedEmail = parsed.data.email.toLowerCase();
+
+  const token = uuidv4();
+  const newSubscriber = await createSubscriber(validatedEmail, token);
+
+  return { data: newSubscriber };
 };

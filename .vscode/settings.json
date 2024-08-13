@@ -10,7 +10,7 @@
   "editor.quickSuggestions": {
     "strings": "on"
   },
-  "cSpell.words": ["clsx", "nextjs", "tailwindcss", "Xata"],
+  "cSpell.words": ["clsx", "nextjs", "tailwindcss", "uuidv", "Xata"],
   "tailwindCSS.experimental.classRegex": [
     ["ctl\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ]
