@@ -1,10 +1,14 @@
-import React from 'react';
+'use client';
 
 import SubscribeFormButton from './SubscribeFormButton';
+import { subscribe } from '@/actions/subscribe';
 
 const SubscribeForm = () => {
+  const handleSubmit = async (formData: FormData) => {
+    const { error, data } = await subscribe(formData);
+  };
   return (
-    <form id="subscribe-form">
+    <form action={handleSubmit} id="subscribe-form">
       <label htmlFor="email" className="hidden">
         Email
       </label>
