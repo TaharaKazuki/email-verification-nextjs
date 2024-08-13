@@ -4,16 +4,7 @@ import {
   updateSubscriberToVerified,
 } from '@/lib/queries';
 
-type ConfirmSubscriberPageProps = {
-  searchParams: {
-    token: string | undefined;
-  };
-};
-
-const ConfirmSubscriberPage = async ({
-  searchParams,
-}: ConfirmSubscriberPageProps) => {
-  // クッキーからトークンを取得
+const ConfirmSubscriberPage = async () => {
   const tokenFromCookie = cookies().get('subscriber_token')?.value;
 
   if (!tokenFromCookie) {

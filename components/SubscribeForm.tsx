@@ -10,7 +10,7 @@ const SubscribeForm = () => {
   const router = useRouter();
 
   const handleSubmit = async (formData: FormData) => {
-    const { error } = await subscribe(formData);
+    const { error, data } = await subscribe(formData);
 
     if (error) {
       console.error(error);
