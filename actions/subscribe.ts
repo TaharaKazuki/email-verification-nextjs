@@ -1,6 +1,7 @@
 'use server';
 import { v4 as uuidv4 } from 'uuid';
 import * as z from 'zod';
+import { cookies } from 'next/headers'; // next/headers から cookies をインポート
 
 import { createSubscriber, getOneSubscriberByEmail } from '@/lib/queries';
 import { sendConfirmationEmail } from '@/utils/email';
@@ -31,7 +32,17 @@ export const subscribe = async (
     const newSubscriber = await createSubscriber(checkedEmail, token);
     console.info(newSubscriber);
 
-    const validateEmailLink = `${process.env.NEXT_PUBLIC_BASE_URL}/subscriber/confirm?token=${token}`;
+    cookies().set({
+      name: 'subscriber_token',
+      value: token,
+      path: '/',
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 60 * 60 * 24,
+    });
+
+    const validateEmailLink = `${process.env.NEXT_PUBLIC_BASE_URL}/subscriber/confirm`;
 
     const { error } = await sendConfirmationEmail(
       checkedEmail,

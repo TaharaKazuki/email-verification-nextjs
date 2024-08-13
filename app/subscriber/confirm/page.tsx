@@ -1,3 +1,4 @@
+import { cookies } from 'next/headers';
 import {
   getOneSubscriberByToken,
   updateSubscriberToVerified,
@@ -8,16 +9,24 @@ type ConfirmSubscriberPageProps = {
     token: string | undefined;
   };
 };
+
 const ConfirmSubscriberPage = async ({
   searchParams,
 }: ConfirmSubscriberPageProps) => {
-  const token = searchParams.token;
+  const tokenFromUrl = searchParams.token;
 
-  if (!token) {
+  // クッキーからトークンを取得
+  const tokenFromCookie = cookies().get('subscriber_token')?.value;
+
+  if (!tokenFromUrl) {
     throw new Error('No token was passed');
   }
 
-  const subscriber = await getOneSubscriberByToken(token);
+  if (tokenFromUrl !== tokenFromCookie) {
+    throw new Error('Token mismatch');
+  }
+
+  const subscriber = await getOneSubscriberByToken(tokenFromUrl);
   if (!subscriber) {
     throw new Error('Could not find subscriber');
   }
