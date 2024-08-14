@@ -32,8 +32,8 @@ export default async function ConfirmSubscriberPage({
 
   return (
     <>
-      <p className="text-xl mb-4">{email}</p>
-      <h1 className="mb-10  font-semibold tracking-tight text-4xl">
+      <p className="mb-4 text-xl">{email}</p>
+      <h1 className="mb-10  text-4xl font-semibold tracking-tight">
         Verified! ✅
       </h1>
     </>
