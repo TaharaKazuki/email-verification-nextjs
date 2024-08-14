@@ -19,7 +19,7 @@ export const subscribe = async (
 ): Promise<ReturnValue<string>> => {
   try {
     const parsed = subscribeSchema.safeParse({ email: formData.get('email') });
-    if (!parsed.success) return { error: parsed.error.message };
+    if (!parsed.success) return { error: 'Invalid mail' };
 
     const checkedEmail = parsed.data.email.toLowerCase();
 
