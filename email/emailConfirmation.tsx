@@ -32,7 +32,7 @@ const ConfirmationEmail = ({ link }: EmailTemplateProps) => {
 
             <Text>
               If you are having trouble clicking the link, copy and paste the
-              URL 👇
+              Button👇
             </Text>
 
             <Button

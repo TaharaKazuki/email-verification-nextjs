@@ -1,6 +1,9 @@
 {
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "editor.formatOnSave": true,
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
   "eslint.useESLintClass": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": [
